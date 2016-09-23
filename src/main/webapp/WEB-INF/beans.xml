@@ -7,7 +7,7 @@
         bean-discovery-mode="all">
 
     <interceptors>
-        <class>ejb.aop.TransactionAdviser</class>
+        <class>ejb.aop.transaction.JpaTransactionAdviser</class>
     </interceptors>
 
 </beans>

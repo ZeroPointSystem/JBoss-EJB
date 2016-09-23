@@ -1,6 +1,6 @@
 package ejb.persistence.dao.implementation;
 
-import ejb.aop.annotation.Transactional;
+import ejb.aop.transaction.annotation.Transactional;
 import ejb.entities.Student;
 import ejb.persistence.dao.GenericDAO;
 
