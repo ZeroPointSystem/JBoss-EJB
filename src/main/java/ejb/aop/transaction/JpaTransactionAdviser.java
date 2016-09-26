@@ -28,33 +28,9 @@ public class JpaTransactionAdviser {
 
         try {
 
-            Transactional transactionalAnnotation = invocationContext
-                    .getMethod()
-                    .getAnnotation(Transactional.class);
-
-            Isolation isolation = transactionalAnnotation.isolation();
-
-            Propagation propagation = transactionalAnnotation.propagation();
-
-            switch (propagation) {
-                case REQUIRES:
-                    if (!transaction.isActive()) {
-                        transaction
-                                .begin();
-                    }
-                    break;
-                case REQUIRES_NEW:
-                    transaction
-                            .begin();
-                    break;
-                default:
-                    break;
-            }
-
-            result = invocationContext
-                    .proceed();
-            transaction
-                    .commit();
+            transaction.begin();
+            result = invocationContext.proceed();
+            transaction.commit();
 
         } catch (Throwable throwable) {
             if (transaction.isActive()) {
